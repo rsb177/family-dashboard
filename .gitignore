@@ -16,3 +16,6 @@ dist/
 # Docker
 caddy/data/
 caddy/config/
+
+# Claude Code
+.claude/
