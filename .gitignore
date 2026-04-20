@@ -1,0 +1,18 @@
+# Secrets
+.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+.mypy_cache/
+.ruff_cache/
+
+# Frontend
+node_modules/
+dist/
+
+# Docker
+caddy/data/
+caddy/config/
