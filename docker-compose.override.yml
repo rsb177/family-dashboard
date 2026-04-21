@@ -4,6 +4,9 @@ services:
       target: dev
     volumes:
       - ./backend/src:/app/src
+      - ./backend/alembic:/app/alembic
+      - ./backend/alembic.ini:/app/alembic.ini
+      - db_data:/app/data
     environment:
       - ENV=development
 
@@ -20,3 +23,6 @@ services:
   caddy:
     volumes:
       - ./caddy/Caddyfile.dev:/etc/caddy/Caddyfile:ro
+
+volumes:
+  db_data:

@@ -6,6 +6,8 @@ services:
     environment:
       - ENV=production
     env_file: .env
+    volumes:
+      - db_data:/app/data
     restart: unless-stopped
 
   frontend:
@@ -30,3 +32,4 @@ services:
 volumes:
   caddy_data:
   caddy_config:
+  db_data:

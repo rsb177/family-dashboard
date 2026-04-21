@@ -30,6 +30,9 @@ typecheck: ## Run type checkers
 test: ## Run all tests
 	docker compose run --rm backend pytest
 
+migrate: ## Run database migrations
+	docker compose run --rm backend alembic upgrade head
+
 shell-backend: ## Open a shell in the backend container
 	docker compose run --rm backend bash
 
