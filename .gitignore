@@ -19,3 +19,9 @@ caddy/config/
 
 # Claude Code
 .claude/
+
+# Superpowers visual brainstorming
+.superpowers/
+
+# Git worktrees
+.worktrees/
