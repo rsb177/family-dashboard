@@ -17,7 +17,7 @@ class Base(DeclarativeBase):
     pass
 
 
-def get_db() -> Generator[Session]:
+def get_db() -> Generator[Session, None, None]:  # noqa: UP043
     """FastAPI dependency that yields a database session."""
     db = SessionLocal()
     try:
