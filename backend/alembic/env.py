@@ -3,7 +3,7 @@ from pathlib import Path
 
 from alembic import context
 
-sys.path.insert(0, str(Path(__file__).resolve().parents[2] / "src"))
+sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 
 import app.models  # noqa: F401, E402 — registers models with Base.metadata
 from app.database import Base, DATABASE_URL  # noqa: E402
