@@ -1,12 +1,10 @@
-import GridLayout, { WidthProvider } from 'react-grid-layout'
+import { GridLayout, useContainerWidth } from 'react-grid-layout'
 import type { Layout } from 'react-grid-layout'
 import 'react-grid-layout/css/styles.css'
 import 'react-resizable/css/styles.css'
 
 import type { LayoutItem } from '../hooks/useLayout'
 import { widgetRegistry } from '../widgets/widgetRegistry'
-
-const ResponsiveGrid = WidthProvider(GridLayout)
 
 interface Props {
   layout: LayoutItem[]
@@ -15,6 +13,8 @@ interface Props {
 }
 
 export function DashboardGrid({ layout, editable = false, onLayoutChange }: Props) {
+  const { containerRef, width } = useContainerWidth()
+
   function handleLayoutChange(rglLayout: Layout[]) {
     if (!onLayoutChange) return
     const updated: LayoutItem[] = rglLayout.map((rglItem) => {
@@ -25,18 +25,21 @@ export function DashboardGrid({ layout, editable = false, onLayoutChange }: Prop
   }
 
   return (
-    <ResponsiveGrid
-      layout={layout}
-      cols={12}
-      rowHeight={80}
-      isDraggable={editable}
-      isResizable={editable}
-      onLayoutChange={editable ? handleLayoutChange : undefined}
-    >
-      {layout.map((item) => {
-        const Widget = widgetRegistry[item.type]
-        return <div key={item.i}>{Widget ? <Widget /> : <div>Unknown: {item.type}</div>}</div>
-      })}
-    </ResponsiveGrid>
+    <div ref={containerRef}>
+      <GridLayout
+        layout={layout}
+        width={width}
+        cols={12}
+        rowHeight={80}
+        isDraggable={editable}
+        isResizable={editable}
+        onLayoutChange={editable ? handleLayoutChange : undefined}
+      >
+        {layout.map((item) => {
+          const Widget = widgetRegistry[item.type]
+          return <div key={item.i}>{Widget ? <Widget /> : <div>Unknown: {item.type}</div>}</div>
+        })}
+      </GridLayout>
+    </div>
   )
 }
