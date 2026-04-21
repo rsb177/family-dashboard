@@ -12,6 +12,7 @@ RUN uv sync --frozen
 RUN mkdir -p /app/data
 ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONPATH=/app/src
+ENV PYTHONDONTWRITEBYTECODE=1
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000", "--reload"]
 
 FROM python:3.13-slim AS runtime
@@ -23,4 +24,5 @@ COPY alembic ./alembic/
 RUN mkdir -p /app/data
 ENV PATH="/app/.venv/bin:$PATH"
 ENV PYTHONPATH=/app/src
+ENV PYTHONDONTWRITEBYTECODE=1
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
