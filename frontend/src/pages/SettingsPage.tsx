@@ -32,22 +32,20 @@ export function SettingsPage() {
   if (loading) return <div style={{ padding: 32 }}>Loading...</div>
 
   return (
-    <div>
-      <div
-        style={{
-          padding: '12px 16px',
-          display: 'flex',
-          gap: 16,
-          alignItems: 'center',
-          borderBottom: '1px solid #334155',
-        }}
-      >
-        <Link to="/">← Dashboard</Link>
-        <h2 style={{ margin: 0 }}>Layout Settings</h2>
-        <button onClick={handleSave} disabled={saving}>
+    <div className="dash">
+      <div className="edit-toolbar">
+        <Link to="/" className="btn btn--ghost">
+          ← Dashboard
+        </Link>
+        <h2>Layout Settings</h2>
+        <button className="btn btn--primary" onClick={handleSave} disabled={saving}>
           {saving ? 'Saving…' : 'Save'}
         </button>
-        {saveError && <span style={{ color: '#f87171' }}>{saveError}</span>}
+        {saveError && (
+          <span className="meta" role="alert">
+            {saveError}
+          </span>
+        )}
       </div>
       <DashboardGrid layout={draft} editable onLayoutChange={setDraft} />
     </div>

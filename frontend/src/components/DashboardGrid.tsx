@@ -37,7 +37,11 @@ export function DashboardGrid({ layout, editable = false, onLayoutChange }: Prop
       >
         {layout.map((item) => {
           const Widget = widgetRegistry[item.type]
-          return <div key={item.i}>{Widget ? <Widget /> : <div>Unknown: {item.type}</div>}</div>
+          return (
+            <div key={item.i} style={{ height: '100%' }}>
+              {Widget ? <Widget /> : <div>Unknown: {item.type}</div>}
+            </div>
+          )
         })}
       </GridLayout>
     </div>
